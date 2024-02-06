@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
+<h2>목록</h2>
+<button type="button" onclick="location.href='/post'">글쓰기</button>
 
 </body>
 </html>

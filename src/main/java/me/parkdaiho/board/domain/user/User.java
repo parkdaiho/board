@@ -1,10 +1,7 @@
 package me.parkdaiho.board.domain.user;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import me.parkdaiho.board.domain.BaseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,6 +14,7 @@ import java.util.Collections;
 @Getter
 @Setter
 @Entity
+@Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
 
     @Id
@@ -36,6 +34,13 @@ public class User extends BaseEntity implements UserDetails {
     private Role role;
 
     private Boolean isEnabled;
+
+    @Builder
+    public User(String username, String password, String nickname) {
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+    }
 
     @PrePersist
     public void prePersist() {

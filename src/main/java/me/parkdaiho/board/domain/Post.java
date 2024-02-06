@@ -19,7 +19,7 @@ public class Post extends BaseEntity{
     @Column(nullable = false)
     private String title;
 
-    private String content;
+    private String contents;
 
     private Boolean isEnable;
 
@@ -29,9 +29,9 @@ public class Post extends BaseEntity{
     }
 
     @Builder
-    public Post(Long userId, String title, String content) {
+    public Post(Long userId, String title, String contents) {
         this.userId = userId;
         this.title = title;
-        this.content = content;
+        this.contents = contents;
     }
 }
