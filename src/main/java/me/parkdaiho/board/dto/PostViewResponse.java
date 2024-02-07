@@ -1,14 +1,22 @@
 package me.parkdaiho.board.dto;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import me.parkdaiho.board.domain.Post;
 
-@RequiredArgsConstructor
+import java.time.LocalDateTime;
+
 @Getter
 public class PostViewResponse {
 
-    private final Long userId;
-    private final String title;
-    private final String contents;
+    private String username;
+    private String title;
+    private String contents;
+    private LocalDateTime createdAt;
+
+    public PostViewResponse(Post post) {
+        this.username = post.getUser().getUsername();
+        this.title = post.getTitle();
+        this.contents = post.getContents();
+        this.createdAt = post.getCreatedAt();
+    }
 }

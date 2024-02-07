@@ -4,21 +4,21 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import me.parkdaiho.board.domain.Post;
+import me.parkdaiho.board.domain.user.User;
 
 @RequiredArgsConstructor
 @Getter
 @Setter
 public class AddPostRequest {
 
-    private final Long userId;
     private final String title;
     private final String contents;
 
-    public Post toEntity() {
+    public Post toEntity(User user) {
         return Post.builder()
-                .userId(userId)
-                .title(title)
-                .contents(contents)
+                .user(user)
+                .title(this.title)
+                .contents(this.contents)
                 .build();
     }
 }

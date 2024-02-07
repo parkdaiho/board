@@ -2,6 +2,7 @@ package me.parkdaiho.board.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import me.parkdaiho.board.domain.user.User;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -13,9 +14,6 @@ public class Post extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(updatable = false, nullable = false)
-    private Long userId;
-
     @Column(nullable = false)
     private String title;
 
@@ -23,15 +21,26 @@ public class Post extends BaseEntity{
 
     private Boolean isEnable;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @PrePersist
     public void prePersist() {
         this.isEnable = true;
     }
 
     @Builder
-    public Post(Long userId, String title, String contents) {
-        this.userId = userId;
+    public Post(User user, String title, String contents) {
+        this.user = user;
         this.title = title;
         this.contents = contents;
+    }
+
+    public Post update(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
+
+        return this;
     }
 }
