@@ -314,7 +314,8 @@ a {
   box-sizing: border-box;
 }
 
-.login_wrap .btn_wrap a {
+.login_wrap .btn_wrap button {
+  all: unset;
   display: inline-block;
   min-width: 50%;
   margin-left: 15px;
@@ -326,7 +327,7 @@ a {
   color: #fff;
 }
 
-.login_wrap .btn_wrap a:first-child {
+.login_wrap .btn_wrap button:first-child {
   margin-left: 0;
 }
 .login_form {

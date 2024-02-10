@@ -13,15 +13,17 @@
     <p>로그인을 해주세요.</p>
   </div>
     <div class="login_form">
-      <ul>
-        <li><input type="text" placeholder="USERNAME"></li>
-        <li><input type="password" placeholder="PASSWORD"></li>
-        <li><input type="checkbox" id="remember_id"><label for="remember_id">아이디저장</label></li>
-        <li><a href="">회원가입</a></li>
-      </ul>
-    </div>
-    <div class="btn_wrap">
-      <a href="#">로그인</a>
+      <form action="/login" method="post">
+        <ul>
+          <li><input type="text" placeholder="USERNAME" name="username"></li>
+          <li><input type="password" placeholder="PASSWORD" name="password"></li>
+          <li><input type="checkbox" id="remember_id" name="remember_id"><label for="remember_id">아이디저장</label></li>
+          <li><a href="/sign-up">회원가입</a></li>
+        </ul>
+        <div class="btn_wrap">
+          <button type="submit">로그인</button>
+        </div>
+      </form>
     </div>
 </div>
 </body>

@@ -31,14 +31,15 @@ public class WebConfiguration {
         http.csrf().disable();
 
         http.authorizeHttpRequests()
-                        .requestMatchers("/post").authenticated()
+                        .requestMatchers("/post", "/posts/**", "/api/**").authenticated()
                         .anyRequest().permitAll();
+
 
         http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
 
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/list")
                 .failureUrl("/login?unexpected-user")
 
                 .usernameParameter("username")
