@@ -17,10 +17,10 @@ public class UserApiController {
     private final UserService userService;
 
     @PostMapping("/sign-up")
-    public String signUp(RegisterUserRequest dto) {
-        User savedUser = userService.registerUser(dto);
+    public String signUp(RegisterUserRequest request) {
+        User savedUser = userService.registerUser(request);
 
-        return "redirect:/login";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")

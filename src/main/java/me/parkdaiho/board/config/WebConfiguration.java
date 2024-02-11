@@ -36,7 +36,7 @@ public class WebConfiguration {
 
 
         http.formLogin()
-                .loginPage("/login")
+                .loginPage("/")
                 .loginProcessingUrl("/login")
 
                 .defaultSuccessUrl("/list")
