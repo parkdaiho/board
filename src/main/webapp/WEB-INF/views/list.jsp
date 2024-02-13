@@ -1,4 +1,11 @@
+<%@ page import="java.util.List" %>
+<%@ page import="me.parkdaiho.board.dto.PostListResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  if(request.getAttribute("lists") != null) {
+    List<PostListResponse> lists = (List<PostListResponse>) request.getAttribute("lists");
+  }
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -21,34 +28,6 @@
           <div class="writer">글쓴이</div>
           <div class="date">작성일</div>
           <div class="count">조회</div>
-        </div>
-        <div>
-          <div class="num">5</div>
-          <div class="title"><a href="view.jsp">글 제목이 들어갑니다.</a></div>
-          <div class="writer">박이름</div>
-          <div class="date">2024.2.8</div>
-          <div class="count">33</div>
-        </div>
-        <div>
-          <div class="num">4</div>
-          <div class="title"><a href="">글 제목이 들어갑니다.</a></div>
-          <div class="writer">박이름</div>
-          <div class="date">2024.2.8</div>
-          <div class="count">33</div>
-        </div>
-        <div>
-          <div class="num">3</div>
-          <div class="title"><a href="">글 제목이 들어갑니다.</a></div>
-          <div class="writer">박이름</div>
-          <div class="date">2024.2.8</div>
-          <div class="count">33</div>
-        </div>
-        <div>
-          <div class="num">2</div>
-          <div class="title"><a href="">글 제목이 들어갑니다.</a></div>
-          <div class="writer">박이름</div>
-          <div class="date">2024.2.8</div>
-          <div class="count">33</div>
         </div>
         <div>
           <div class="num">1</div>

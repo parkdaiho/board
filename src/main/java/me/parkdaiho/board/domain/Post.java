@@ -19,6 +19,8 @@ public class Post extends BaseEntity{
 
     private String contents;
 
+    private Long views;
+
     private Boolean isEnable;
 
     @ManyToOne
@@ -28,6 +30,7 @@ public class Post extends BaseEntity{
     @PrePersist
     public void prePersist() {
         this.isEnable = true;
+        this.views = 0L;
     }
 
     @Builder

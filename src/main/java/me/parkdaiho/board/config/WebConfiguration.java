@@ -39,13 +39,20 @@ public class WebConfiguration {
                 .loginPage("/")
                 .loginProcessingUrl("/login")
 
-                .defaultSuccessUrl("/list")
-                .failureUrl("/login?unexpected-user")
+                .defaultSuccessUrl("/")
+                .failureUrl("/?err=unexpected-user")
 
                 .usernameParameter("username")
-                .passwordParameter("password");
+                .passwordParameter("password")
+
+                .successHandler(authenticationCustomSuccessHandler());
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationCustomSuccessHandler authenticationCustomSuccessHandler() {
+        return new AuthenticationCustomSuccessHandler();
     }
 
     @Bean
