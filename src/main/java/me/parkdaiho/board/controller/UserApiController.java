@@ -26,9 +26,9 @@ public class UserApiController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         if(userService.logout(request, response)) {
-            return "redirect:/login?logout=success";
+            return "redirect:/?logout=success";
         } else {
-            return "redirect:/login?logout=fail";
+            return "redirect:/?logout=fail";
         }
     }
 }

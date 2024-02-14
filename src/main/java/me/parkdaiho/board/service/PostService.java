@@ -12,13 +12,13 @@ import me.parkdaiho.board.repository.PostRepository;
 import me.parkdaiho.board.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -26,25 +26,30 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public Long addPost(AddPostRequest dto, User user) {
-        return postRepository.save(dto.toEntity(user)).getId();
+    public Long addPost(User user, AddPostRequest request) {
+        return postRepository.save(request.toEntity(user)).getId();
     }
 
-    public List<PostListResponse> lists(int page) {
-        PageRequest pageRequest = PageRequest.of(page, 10);
-        Page<Post> result = postRepository.findAll(pageRequest);
+    public Map<String, Object> list(int page, int size) {
+        Map<String, Object> result = new HashMap<>();
 
-        List<PostListResponse> lists = new ArrayList<>();
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
+        Page<Post> posts = postRepository.findAll(pageRequest);
 
-        for(Post post : result.getContent()) {
-            lists.add(new PostListResponse(post));
+        List<PostListResponse> list = new ArrayList<>();
+        for (Post post : posts) {
+            list.add(new PostListResponse(post));
         }
 
-        return lists;
+        result.put("count", posts.getTotalElements());
+        result.put("totalPages", posts.getTotalPages());
+        result.put("list", list);
+
+        return result;
     }
 
     public void add27Posts(User user) {
-        for(int i = 0; i < 27; i++) {
+        for (int i = 0; i < 27; i++) {
             Post post = Post.builder()
                     .title("제목 " + i)
                     .contents("내용 " + i)
@@ -55,11 +60,9 @@ public class PostService {
         }
     }
 
-    public PostViewResponse findById(Long id) {
-        Post post = postRepository.findById(id)
+    public Post findById(Long id) {
+        return postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Unexpected post"));
-
-        return new PostViewResponse(post);
     }
 
     @Transactional
@@ -68,6 +71,7 @@ public class PostService {
                 .orElseThrow(() -> new IllegalArgumentException("Unexpected post"));
 
         authorization(post);
+
         postRepository.delete(post);
     }
 
@@ -86,8 +90,8 @@ public class PostService {
     private static void authorization(Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if(!post.getUser().getId().equals(user.getId())) {
-            throw new IllegalArgumentException("check writer");
+        if (!post.getUser().getId().equals(user.getId())) {
+            throw new IllegalArgumentException("No authorization");
         }
     }
 }

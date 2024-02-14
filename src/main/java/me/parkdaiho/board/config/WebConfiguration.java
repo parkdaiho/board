@@ -34,7 +34,6 @@ public class WebConfiguration {
                         .requestMatchers("/post", "/posts/**", "/api/**").authenticated()
                         .anyRequest().permitAll();
 
-
         http.formLogin()
                 .loginPage("/")
                 .loginProcessingUrl("/login")

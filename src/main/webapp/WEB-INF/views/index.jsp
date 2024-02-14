@@ -7,8 +7,6 @@
   if(rememberIdCookie != null) {
     request.setAttribute("username", CookieUtils.deserialize(rememberIdCookie, String.class));
   }
-
-
 %>
 <!DOCTYPE html>
 <html lang="ko">

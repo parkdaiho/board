@@ -6,13 +6,12 @@ import lombok.Setter;
 import me.parkdaiho.board.domain.Post;
 import me.parkdaiho.board.domain.user.User;
 
-@RequiredArgsConstructor
 @Getter
 @Setter
 public class AddPostRequest {
 
-    private final String title;
-    private final String contents;
+    private String title;
+    private String contents;
 
     public Post toEntity(User user) {
         return Post.builder()

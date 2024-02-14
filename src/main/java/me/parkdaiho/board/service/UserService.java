@@ -16,8 +16,8 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User registerUser(RegisterUserRequest dto) {
-        return userRepository.save(dto.toEntity());
+    public User registerUser(RegisterUserRequest request) {
+        return userRepository.save(request.toEntity());
     }
 
     public boolean logout(HttpServletRequest request, HttpServletResponse response) {

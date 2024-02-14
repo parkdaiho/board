@@ -1,11 +1,5 @@
-<%@ page import="java.util.List" %>
-<%@ page import="me.parkdaiho.board.dto.PostListResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-  if(request.getAttribute("lists") != null) {
-    List<PostListResponse> lists = (List<PostListResponse>) request.getAttribute("lists");
-  }
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,43 +9,53 @@
   <link rel="stylesheet" href="/css/css.css">
 </head>
 <body>
-  <div class="board_wrap">
-    <div class="board_title">
-      <strong>게시판</strong>
-      <p>게시물 목록이 있다.</p>
-    </div>
-    <div class="board_list_wrap">
-      <div class="board_list">
-        <div class="top">
-          <div class="num">번호</div>
-          <div class="title">제목</div>
-          <div class="writer">글쓴이</div>
-          <div class="date">작성일</div>
-          <div class="count">조회</div>
-        </div>
+<div class="board_wrap">
+  <div class="board_title">
+    <strong>게시판</strong>
+    <p>총 ${count} 개의 게시물</p>
+  </div>
+  <div class="board_list_wrap">
+    <div class="board_list">
+      <div class="top">
+        <div class="num">번호</div>
+        <div class="title">제목</div>
+        <div class="writer">글쓴이</div>
+        <div class="date">작성일</div>
+        <div class="count">조회</div>
+      </div>
+      <c:forEach var="post" items="${list}">
         <div>
-          <div class="num">1</div>
-          <div class="title"><a href="">글 제목이 들어갑니다.</a></div>
-          <div class="writer">박이름</div>
-          <div class="date">2024.2.8</div>
-          <div class="count">33</div>
+          <div class="num">${post.id}</div>
+          <div class="title"><a href="/posts/${post.id}">${post.title}</a></div>
+          <div class="writer">${post.nickname}</div>
+          <div class="date">${post.createdAt}</div>
+          <div class="count">${post.views}</div>
         </div>
-      </div>
+      </c:forEach>
+    </div>
+    <c:if test="${totalPages != 0}">
       <div class="board_page">
-        <a href="#" class="btn first"><<</a>
-        <a href="#" class="btn prev"><</a>
-        <a href="#" class="num on">1</a>
-        <a href="#" class="num">2</a>
-        <a href="#" class="num">3</a>
-        <a href="#" class="num">4</a>
-        <a href="#" class="num">5</a>
-        <a href="#" class="btn last">></a>
-        <a href="#" class="btn next">>></a>
+        <a href="/posts?page=1" class="btn first"><<</a>
+        <a href="/posts?page=${page == 1 ? 1 : page - 1}" class="btn prev"><</a>
+        <c:forEach var="num" begin="${fistNumOfBlock}" end="${lastNumOfBlock}">
+          <c:choose>
+            <c:when test="${page == num}">
+              <a href="/posts?page=${page}" class="num on">${page}</a>
+            </c:when>
+            <c:otherwise>
+              <a href="/posts?page=${num}" class="num">${num}</a>
+            </c:otherwise>
+          </c:choose>
+        </c:forEach>
+        <a href="/posts?page=${page == totalPages ? page : page + 1}" class="btn last">></a>
+        <a href="/posts?page=${totalPages}" class="btn next">>></a>
       </div>
-      <div class="btn_wrap">
-        <a href="write.jsp" class="on">등록</a>
-      </div>
+    </c:if>
+    <div class="btn_wrap">
+      <a href="/post" class="on">등록</a>
+      <a href="/logout">로그아웃</a>
     </div>
   </div>
+</div>
 </body>
 </html>
