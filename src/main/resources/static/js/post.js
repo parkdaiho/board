@@ -2,6 +2,10 @@ const addBtn = document.getElementById("add_btn");
 
 if(addBtn) {
     addBtn.addEventListener("click", () => {
+        if(!validCheck()) {
+            return false;
+        }
+
         let body = JSON.stringify({
             title: document.getElementById("title").value,
             contents: document.getElementById("contents").value
@@ -30,6 +34,10 @@ const modifyBtn = document.getElementById("modify_btn");
 
 if(modifyBtn) {
     modifyBtn.addEventListener("click", () => {
+        if(!validCheck()) {
+            return false;
+        }
+
         let body = JSON.stringify({
             title: document.getElementById("title").value,
             contents: document.getElementById("contents").value
@@ -79,3 +87,22 @@ if(deleteBtn) {
             });
     });
 }
+
+const validCheck = function () {
+    let title = document.getElementById("title");
+    let contents = document.getElementById("contents");
+
+    if(title.value === "") {
+        alert("제목을 입력해주세요.");
+        title.focus();
+        return false;
+    }
+
+    if(contents.value === "") {
+        alert("내용을 입력해주세요.");
+        contents.focus();
+        return false;
+    }
+
+    return true;
+};

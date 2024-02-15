@@ -13,7 +13,7 @@
     <p></p>
   </div>
   <div class="sign_up_form">
-    <form action="/sign-up" method="post" onsubmit="">
+    <form action="/sign-up" method="post" onsubmit="return validCheck()">
       <ul>
         <li><label for="username">USERNAME : </label><input type="text" name="username" id="username"></li>
         <li><label for="password">PASSWORD : </label><input type="password" name="password" id="password"></li>
@@ -25,5 +25,6 @@
     </form>
   </div>
 </div>
+<script src="/js/signUp.js"></script>
 </body>
 </html>

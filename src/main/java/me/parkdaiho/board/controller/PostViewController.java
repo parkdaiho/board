@@ -2,8 +2,8 @@ package me.parkdaiho.board.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.parkdaiho.board.domain.user.User;
-import me.parkdaiho.board.dto.PostViewResponse;
-import me.parkdaiho.board.dto.UpdatePostResponse;
+import me.parkdaiho.board.dto.post.PostViewResponse;
+import me.parkdaiho.board.dto.post.UpdatePostResponse;
 import me.parkdaiho.board.service.PostService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

@@ -1,5 +1,5 @@
-const username = document.getElementById("username");
-const password = document.getElementById("password");
+username = document.getElementById("username");
+password = document.getElementById("password");
 const err = searchParam("err");
 
 if(err === "unexpected-user") {
@@ -11,12 +11,12 @@ function searchParam(key) {
 }
 
 function validCheck() {
-    if(username === null) {
+    if(username.value === "") {
         alert("아이디를 입력해주세요.");
         return false;
     }
 
-    if(password === null) {
+    if(password.value === "") {
         alert("비밀번호를 입력해주세요.");
         return false;
     }

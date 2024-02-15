@@ -1,4 +1,4 @@
-package me.parkdaiho.board.dto;
+package me.parkdaiho.board.dto.post;
 
 import lombok.Builder;
 import lombok.Getter;

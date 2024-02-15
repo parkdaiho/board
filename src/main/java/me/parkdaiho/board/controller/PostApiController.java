@@ -2,8 +2,8 @@ package me.parkdaiho.board.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.parkdaiho.board.domain.user.User;
-import me.parkdaiho.board.dto.AddPostRequest;
-import me.parkdaiho.board.dto.UpdatePostRequest;
+import me.parkdaiho.board.dto.post.AddPostRequest;
+import me.parkdaiho.board.dto.post.UpdatePostRequest;
 import me.parkdaiho.board.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

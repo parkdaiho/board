@@ -24,8 +24,8 @@
     <div class="login_form">
       <form action="/login" method="post">
         <ul>
-          <li><input type="text" placeholder="USERNAME" name="username" value="${username}"></li>
-          <li><input type="password" placeholder="PASSWORD" name="password"></li>
+          <li><input type="text" placeholder="USERNAME" id="username" name="username" value="${username}"></li>
+          <li><input type="password" placeholder="PASSWORD" id="password" name="password"></li>
           <c:choose>
             <c:when test="${username != null}">
               <li><input type="checkbox" id="remember_id" name="remember_id" value="check" checked><label for="remember_id">아이디저장</label></li>
@@ -37,11 +37,11 @@
           <li><a href="/sign-up">회원가입</a></li>
         </ul>
         <div class="btn_wrap">
-          <button type="submit" id="login">로그인</button>
+          <button type="submit" id="login" onclick="return validCheck()">로그인</button>
         </div>
       </form>
     </div>
 </div>
-<script src="/js/login.js"></script>
+<script src="/js/login.js?s"></script>
 </body>
 </html>
